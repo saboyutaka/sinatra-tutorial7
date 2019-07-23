@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
+set :public_folder
+
 # /
 get '/' do
   'Hello World!!!!!'
@@ -9,8 +11,9 @@ end
 # /hello?name=sabo
 get '/hello' do
     # query string から取得
-    name = params[:name]
-    "<h1>Hello #{name}!</h1>"
+    @name = params[:name]
+    
+    erb :hello
 end
 
 # /user/saboyutaka
