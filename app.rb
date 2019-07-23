@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
-set :public_folder
+set :public_folder, 'public'
 
 # /
 get '/' do
