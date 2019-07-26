@@ -27,4 +27,21 @@ end
 get '/time' do
     Time.now.to_s
 end
-  
+        
+get '/form' do
+  erb :form
+end
+
+post '/form_output' do
+  # POSTのリクエストボディから値を取得
+  @name = params[:name]
+  @email = params[:email]
+  @content = params[:content]
+
+  # ファイルに保存する
+  File.open("form.txt", mode = "a"){|f|
+    f.write("#{@name},#{@email},#{@content}\n")
+  }
+
+  erb :form_output
+end
