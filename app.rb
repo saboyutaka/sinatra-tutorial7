@@ -58,5 +58,5 @@ post '/upload' do
   FileUtils.mv(params[:img][:tempfile], "./public/images/#{@file_name}")
 
   # erb :uploaded
-  redirect '/upload
+  redirect '/upload'
 end
