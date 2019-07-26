@@ -1,3 +1,10 @@
 h1 {
     color: green;
 }
+
+#images {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+

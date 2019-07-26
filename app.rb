@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require 'fileutils'
 
 set :public_folder, 'public'
 
@@ -44,4 +45,18 @@ post '/form_output' do
   }
 
   erb :form_output
+end
+
+get '/upload' do
+  @images = Dir.glob("./public/images/*").map{|path| path.split('/').last }
+  
+  erb :upload
+end
+
+post '/upload' do
+  @file_name = params[:img][:filename]
+  FileUtils.mv(params[:img][:tempfile], "./public/images/#{@file_name}")
+
+  # erb :uploaded
+  redirect '/upload
 end
