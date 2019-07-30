@@ -1,8 +1,20 @@
+###
+# ライブラリの読み込み
+###
 require 'sinatra'
 require 'sinatra/reloader'
 require 'fileutils'
+require 'sinatra/cookies'
 
+###
+# Sinatraの設定
+###
 set :public_folder, 'public'
+enable :sessions
+
+###
+# ルーティング
+###
 
 # /
 get '/' do
