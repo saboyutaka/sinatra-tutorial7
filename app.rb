@@ -24,8 +24,9 @@ end
 # /hello?name=sabo
 get '/hello' do
     # query string から取得
-    @name = params[:name]
-    
+    # @name = params[:name]
+    session[:name] =  params[:name]
+
     erb :hello
 end
 
