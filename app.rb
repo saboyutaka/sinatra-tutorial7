@@ -5,12 +5,27 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'fileutils'
 require 'sinatra/cookies'
+require 'pg'
 
 ###
 # Sinatraの設定
 ###
 set :public_folder, 'public'
 enable :sessions
+
+def db
+  host = 'localhost'
+  user = 'yutaka' #自分のユーザー名を入れる
+  password = ''
+  dbname = 'myapp'
+
+  # PostgreSQL クライアントのインスタンスを生成
+  PG::connect(
+  :host => host,
+  :user => user,
+  :password => password,
+  :dbname => dbname)
+end
 
 ###
 # ルーティング
@@ -28,6 +43,12 @@ get '/hello' do
     session[:name] =  params[:name]
 
     erb :hello
+end
+
+get '/users' do
+  @users = db.exec_params("select * from users").to_a
+  
+  erb :users
 end
 
 # /user/saboyutaka
